@@ -76,8 +76,12 @@ code {
     color: #c02d76;
 }
 
-#fields {
+body {
     font-family: Arial, Helvetica, sans-serif;
+}
+
+#fields {
+    
     border-collapse: collapse;
     width: 100%;
 }    
@@ -105,4 +109,22 @@ button {
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
+}
+
+.col-25 {
+    float: left;
+    width: 25%;
+    margin-top: 6px;
+}
+
+.col-75 {
+    float: left;
+    width: 75%;
+    margin-top: 6px;
+}
+
+.row::after {
+    content: "";
+    display: table;
+    clear: both;
 }

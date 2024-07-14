@@ -3,22 +3,27 @@
 @using ConfigurableUI.App.Api.Entities
 @inject ConfigurableUIApiClient apiClient
 
+<h3>Frontend</h3>
 <div>Use Profile</div>
 
-<table>
-    <tbody>
-        @foreach (var item in this.Fields)
-        {
-            <tr>
-                <td>@item.Title</td>
-            </tr>
-            <tr>
+<div>
+    @foreach (var item in this.Fields)
+    {
+        <div class="row">
+            <div class="col-25">
+                @item.Title
+            </div>
+            <div class="col-75">
                 <DynamicComponent Type="item.GetComponentType()" Parameters="item.GetParams(this.FieldValues)" />
-            </tr>
-        }
-    </tbody>
-</table>
-<button @onclick="SaveUserProfile">Save</button>
+            </div>
+        </div>
+    }
+
+    <div class="row">
+        <div class="col-25">&nbsp;</div>
+        <div class="col-75"><button @onclick="SaveUserProfile">Save</button></div>
+    </div>
+</div>
 
 @code {
     List<FieldDTO> Fields = new List<FieldDTO>();
