@@ -30,6 +30,4 @@ foreach (var textProvider in textProviders)
     }
 }
 
-
-
 Console.ReadLine();
