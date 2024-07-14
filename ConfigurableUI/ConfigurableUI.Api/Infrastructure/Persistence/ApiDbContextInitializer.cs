@@ -1,7 +1,7 @@
-﻿using ConfigurableUI.Api.Domain.Entities;
-
-namespace ConfigurableUI.Api.Infrastructure.Persistence
+﻿namespace ConfigurableUI.Api.Infrastructure.Persistence
 {
+    using ConfigurableUI.Api.Domain.Entities;
+
     public static class ApiDbContextInitializer
     {
         public static async Task Initialize(this ApiDbContext dbContext)

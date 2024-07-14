@@ -1,9 +1,9 @@
-﻿using ConfigurableUI.Api.Domain.DTO;
-using ConfigurableUI.Api.Features.User.Profile.DTO;
-using ConfigurableUI.Api.Infrastructure.Persistence;
-
-namespace ConfigurableUI.Api.Features.User.Profile
+﻿namespace ConfigurableUI.Api.Features.User.Profile
 {
+    using ConfigurableUI.Api.Domain.DTO;
+    using ConfigurableUI.Api.Features.User.Profile.DTO;
+    using ConfigurableUI.Api.Infrastructure.Persistence;
+
     public class Query
     {
         public static void AddRoutes(IEndpointRouteBuilder app)

@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace ConfigurableUI.Api.Domain.Entities
+﻿namespace ConfigurableUI.Api.Domain.Entities
 {
     public class Field
     {
@@ -13,17 +11,11 @@ namespace ConfigurableUI.Api.Domain.Entities
 
     public enum FieldType
     {
-        [Display(Description = "Text box")]
-        TextInput,
-        [Display(Description = "Date input")]
-        DateInput,
-        [Display(Description = "Numeric input")]
+        TextInput,     
+        DateInput,     
         NumericInput,
-        [Display(Description = "Read-only text")]
-        TextDisplay,
-        [Display(Description = "Read-only date")]
-        DateDisplay,
-        [Display(Description = "Read-only number")]
+        TextDisplay,        
+        DateDisplay,        
         NumberDisplay,
     }
 }

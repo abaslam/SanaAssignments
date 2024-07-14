@@ -1,5 +1,4 @@
-﻿
-namespace ConfigurableUI.Api.Infrastructure.Persistence
+﻿namespace ConfigurableUI.Api.Infrastructure.Persistence
 {
     using ConfigurableUI.Api.Domain.Entities;
     using Microsoft.EntityFrameworkCore;

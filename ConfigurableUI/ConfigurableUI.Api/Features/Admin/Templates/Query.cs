@@ -3,7 +3,6 @@
     using ConfigurableUI.Api.Domain.DTO;
     using ConfigurableUI.Api.Domain.Entities;
     using ConfigurableUI.Api.Infrastructure.Persistence;
-    using Swashbuckle.AspNetCore.SwaggerGen;
 
     public class Query
     {

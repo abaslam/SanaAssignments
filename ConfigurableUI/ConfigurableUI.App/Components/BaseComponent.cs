@@ -1,8 +1,8 @@
-﻿using ConfigurableUI.App.Api.Entities;
-using Microsoft.AspNetCore.Components;
-
-namespace ConfigurableUI.App.Components
+﻿namespace ConfigurableUI.App.Components
 {
+    using ConfigurableUI.App.Api.Entities;
+    using Microsoft.AspNetCore.Components;
+
     public class BaseComponent : ComponentBase
     {
         [Parameter]
