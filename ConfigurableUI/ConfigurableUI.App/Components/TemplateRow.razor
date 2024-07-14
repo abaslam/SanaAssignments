@@ -1,0 +1,33 @@
+﻿@using ConfigurableUI.App.Api.Entities;
+
+<td>
+    <InputText @bind-Value="Field.Title" />
+</td>
+<td>
+    <InputSelect @bind-Value="Field.Type">
+        @foreach (var fieldType in FieldTypes)
+        {
+            <option value="@fieldType.Key">@fieldType.Value</option>
+        }
+    </InputSelect>
+</td>
+<td>    
+    @if (Field.DefaultValue != null)
+    {
+        <DynamicComponent Type="Field.GetDefaultValueComponent()" Parameters="Field.GetParams()" />
+    }
+</td>
+<td>
+    <button @onclick="()=>Action(Field)">@Label</button>
+</td>
+
+@code {
+    [Parameter]
+    public FieldDTO Field { get; set; }
+    [Parameter]
+    public string Label { get; set; }
+    [Parameter]
+    public Action<FieldDTO> Action { get; set; }
+    [Parameter]
+    public Dictionary<FieldType, string> FieldTypes { get; set; }
+}

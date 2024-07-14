@@ -1,0 +1,62 @@
+﻿@page "/admin"
+@using ConfigurableUI.App.Api.Client
+@using ConfigurableUI.App.Api.Entities
+@inject ConfigurableUIApiClient apiClient
+
+<table>
+    <thead>
+        <tr>
+            <td>Field Title</td>
+            <td>Editor / Display template</td>
+            <td>Default Value</td>
+            <td>&nbsp;</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var field in Fields)
+        {
+            <tr @key="field.Id">
+                <ConfigurableUI.App.Components.TemplateRow Field="@field" Label="Delete" Action="@RemoveField" FieldTypes="@FieldTypes" @key="NewField.Id" />
+            </tr>
+        }
+        <tr>
+            <ConfigurableUI.App.Components.TemplateRow Field="@NewField" Label="Add" Action="@AddField" FieldTypes="@FieldTypes" @key="NewField.Id"/>
+        </tr>
+    </tbody>
+</table>
+<button @onclick="SaveFields">Save</button>
+@code {
+    List<FieldDTO> Fields = new List<FieldDTO>();
+    Dictionary<FieldType, string> FieldTypes = [];
+    FieldDTO NewField = new FieldDTO();
+
+    public void RemoveField(FieldDTO field)
+    {
+        this.Fields.Remove(field);
+        StateHasChanged();
+    }
+
+    public void AddField(FieldDTO field)
+    {
+        this.Fields.Add(new FieldDTO { Id = field.Id, Title = field.Title, Type = field.Type, DefaultValue = new FieldValueDTO() });
+        this.NewField = new FieldDTO();
+        StateHasChanged();
+    }
+
+    public async Task SaveFields()
+    {
+        await this.apiClient.SaveTemplate(new SaveTemplateRequest(this.Fields));
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        var templateResponse = await this.apiClient.GetTemplate();
+
+        if (templateResponse != null)
+        {
+            this.Fields = templateResponse.Fields;
+            this.FieldTypes = templateResponse.FieldTypes;
+        }
+    }
+
+}

@@ -1,0 +1,42 @@
+﻿@page "/userprofile"
+@using ConfigurableUI.App.Api.Client
+@using ConfigurableUI.App.Api.Entities
+@inject ConfigurableUIApiClient apiClient
+
+<div>Use Profile</div>
+
+<table>
+    <tbody>
+        @foreach (var item in this.Fields)
+        {
+            <tr>
+                <td>@item.Title</td>
+            </tr>
+            <tr>
+                <DynamicComponent Type="item.GetComponentType()" Parameters="item.GetParams(this.FieldValues)" />
+            </tr>
+        }
+    </tbody>
+</table>
+<button @onclick="SaveUserProfile">Save</button>
+
+@code {
+    List<FieldDTO> Fields = new List<FieldDTO>();
+    List<UserValueDTO> FieldValues = new List<UserValueDTO>();
+
+    public async Task SaveUserProfile()
+    {
+        await this.apiClient.SaveUserProfile(new SaveUserProfileRequest(this.FieldValues));
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        var userProfileResponse = await this.apiClient.GetUserProfile();
+
+        if (userProfileResponse != null)
+        {
+            this.Fields = userProfileResponse.Fields;
+            this.FieldValues = userProfileResponse.Values;
+        }
+    }
+}
