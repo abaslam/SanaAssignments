@@ -76,4 +76,33 @@ code {
     color: #c02d76;
 }
 
+#fields {
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}    
+    #fields td, #fields th {
+        border: 1px solid #ddd;
+        padding: 8px;
+    }
 
+    #fields td:nth-child(4){
+        text-align: center;
+    }    
+
+    #fields th {
+        padding-top: 12px;
+        padding-bottom: 12px;
+        text-align: left;
+        background-color: lightgray;
+    }
+
+button {
+    background-color: darkslategray;
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}

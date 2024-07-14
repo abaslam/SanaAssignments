@@ -3,13 +3,13 @@
 @using ConfigurableUI.App.Api.Entities
 @inject ConfigurableUIApiClient apiClient
 
-<table>
+<table id="fields">
     <thead>
         <tr>
-            <td>Field Title</td>
-            <td>Editor / Display template</td>
-            <td>Default Value</td>
-            <td>&nbsp;</td>
+            <th>Field Title</th>
+            <th>Editor / Display template</th>
+            <th>Default Value</th>
+            <th>&nbsp;</th>
         </tr>
     </thead>
     <tbody>
@@ -22,9 +22,15 @@
         <tr>
             <ConfigurableUI.App.Components.TemplateRow Field="@NewField" Label="Add" Action="@AddField" FieldTypes="@FieldTypes" @key="NewField.Id"/>
         </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td><button @onclick="SaveFields">Save</button></td>
+        </tr>
     </tbody>
 </table>
-<button @onclick="SaveFields">Save</button>
+
 @code {
     List<FieldDTO> Fields = new List<FieldDTO>();
     Dictionary<FieldType, string> FieldTypes = [];
