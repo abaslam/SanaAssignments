@@ -1,0 +1,61 @@
+﻿@page "/login"
+
+@using ConfigurableUI.App.Api.Client
+@using ConfigurableUI.App.Api.Entities
+@inject ConfigurableUIApiClient apiClient
+@inject NavigationManager navigationManager
+
+<h3>Login</h3>
+
+<h3>Frontend</h3>
+<div>User Login</div>
+
+@if (ShowError)
+{
+    <div style="color:red" role="alert">
+        <p>Login failed!</p>
+    </div>
+}
+
+
+<div>
+    <div class="row">
+        <div class="col-25">
+            Username
+        </div>
+        <div class="col-75">
+            <InputText @bind-Value="LoginRequest.Username"/>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-25">
+            Password
+        </div>
+        <div class="col-75">
+            <InputText @bind-Value="LoginRequest.Password" typeof="password"/>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-25">&nbsp;</div>
+        <div class="col-75"><button @onclick="PerformLogin">Login</button></div>
+    </div>
+</div>
+
+@code {
+    LoginRequest LoginRequest { get; set; } = new LoginRequest();
+    bool ShowError{ get; set; }
+    public async Task PerformLogin()
+    {
+        this.ShowError = false;
+        var loginResponse = await this.apiClient.Login(this.LoginRequest);
+
+        if (loginResponse.Success)
+        {
+            this.navigationManager.NavigateTo("/");
+        }
+        else
+        {
+            this.ShowError = true;
+        }
+    }
+}

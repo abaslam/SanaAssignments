@@ -1,7 +1,9 @@
 ﻿@page "/userprofile"
 @using ConfigurableUI.App.Api.Client
 @using ConfigurableUI.App.Api.Entities
+@using Microsoft.AspNetCore.Authorization
 @inject ConfigurableUIApiClient apiClient
+@attribute [Authorize]
 
 <h3>Frontend</h3>
 <div>Use Profile</div>

@@ -66,7 +66,7 @@
                 await dbContext.SaveChangesAsync();
 
                 return Results.Created();
-            });
+            }).RequireAuthorization();
         }
 
         public record SaveTemplateRequest(List<FieldDTO> Fields);

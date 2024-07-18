@@ -1,7 +1,9 @@
 ﻿@page "/admin"
 @using ConfigurableUI.App.Api.Client
 @using ConfigurableUI.App.Api.Entities
+@using Microsoft.AspNetCore.Authorization
 @inject ConfigurableUIApiClient apiClient
+@attribute [Authorize]
 
 <h3>Admin</h3>
 <div>Configure user profile fields</div>

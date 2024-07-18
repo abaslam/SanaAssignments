@@ -22,7 +22,7 @@
                 dbContext.Fields.Add(field);
             }
 
-            dbContext.Users.Add(new User { Id = Guid.NewGuid(), Name = "Default User" });
+            dbContext.Users.Add(new User { Id = Guid.NewGuid(), Name = "admin", Password = "admin" });
 
             await dbContext.SaveChangesAsync();
         }

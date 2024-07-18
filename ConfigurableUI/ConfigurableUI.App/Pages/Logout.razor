@@ -1,0 +1,13 @@
+﻿@page "/logout"
+@using ConfigurableUI.App.Providers
+@using Microsoft.AspNetCore.Components.Authorization
+@inject AuthenticationStateProvider authStateProvider
+@inject NavigationManager navigationManager
+
+@code {
+    protected override async Task OnInitializedAsync()
+    {
+        await ((AuthStateProvider)this.authStateProvider).NotifyUserLogout();
+        this.navigationManager.NavigateTo("/");
+    }
+}

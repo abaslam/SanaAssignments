@@ -22,7 +22,7 @@
                 fieldTypes.Add(FieldType.NumberDisplay, "Read-only number");
 
                 return Results.Ok(new GetTemplateResponse(fields, fieldTypes));
-            });
+            }).RequireAuthorization();
         }
 
         public record GetTemplateResponse(List<FieldDTO> Fields, Dictionary<FieldType, string> FieldTypes);

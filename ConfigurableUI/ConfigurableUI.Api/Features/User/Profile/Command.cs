@@ -9,9 +9,9 @@
     {
         public static void AddRoutes(IEndpointRouteBuilder app)
         {
-            app.MapPost("api/user/profile", async (SaveUserProfileRequest request, ApiDbContext dbContext) =>
+            app.MapPost("api/user/profile", async (SaveUserProfileRequest request, ApiDbContext dbContext, HttpContext httpContext) =>
             {
-                var defaultUser = dbContext.Users.FirstOrDefault(x => x.Name == "Default User");
+                var defaultUser = dbContext.Users.FirstOrDefault(x => x.Name == httpContext.User.Identity.Name);
                 foreach (var value in request.Values)
                 {
                     var existingValue = dbContext.UserValues.Include(x => x.Value).FirstOrDefault(x => x.FieldId == value.FieldId && x.UserId == defaultUser.Id);
@@ -47,7 +47,7 @@
                 await dbContext.SaveChangesAsync();
 
                 return Results.Ok();
-            });
+            }).RequireAuthorization();
         }
 
         public record SaveUserProfileRequest(List<UserValueDTO> Values);
